@@ -5,9 +5,11 @@ big_mac_file = './big-mac-full-index.csv'
 def get_big_mac_price_by_year(year,country_code):
     country_code = country_code.upper()
     df = pd.read_csv(big_mac_file)
-    querry = f"(ise_a3 == '{country_code})' and date >='{year}-01-01' and date <= '{year}-12-31')"
+    querry = f"(iso_a3 == '{country_code}' and date >='{year}-01-01' and date <= '{year}-12-31')"
     pby_df = df.query(querry)
-    return pby_df
+    min_idk = pby_df['dollar_price'].idxmin()
+    comb_QR = (pby_df.loc[min_idk]['dollar_price'])
+    return round(comb_QR,2)
 
 def get_big_mac_price_by_country(country_code):
     pass # Remove this line and code your function
