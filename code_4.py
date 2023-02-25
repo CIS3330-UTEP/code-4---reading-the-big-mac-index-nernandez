@@ -16,9 +16,8 @@ def get_big_mac_price_by_country(country_code):
     df = pd.read_csv(big_mac_file)
     querry = f"(iso_a3 == '{country_code}')"
     pbc_df = df.query(querry)
-    mean_idk = pbc_df['dollar_price'].idxmin()
-    xcomb_QR = (pbc_df.loc[mean_idk]['dollar_price'])
-    return round(xcomb_QR,2)
+    mean_idk = sum(pbc_df) / len(pbc_df)
+    return mean_idk
 
 def get_the_cheapest_big_mac_price_by_year(year):
     df = pd.read_csv(big_mac_file)
